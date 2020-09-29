@@ -14,6 +14,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: devops-capstone-deploy
+  labels:
+    app: devops-capstone
 spec:
   selector:
     matchLabels:
@@ -26,7 +28,7 @@ spec:
     spec:
       containers:
       - name: devops-capstone-pod
-        image: mydocker16121985/devops-capstone:2.0
+        image: mydocker16121985/devops-capstone:4.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -36,4 +38,3 @@ spec:
     rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
-  minReadySeconds: 10

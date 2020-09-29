@@ -1,11 +1,4 @@
 pipeline {
-    environment {
-        eksClusterName = 'EKSCluster'
-        eksRegion = 'us-west-2'
-        dockerHub = 'mydocker16121985'
-        dockerImage = 'devops-capstone'
-        dockerVersion = '2.0'
-    }
     agent any
     stages {
         stage('Lint') {
@@ -16,7 +9,7 @@ pipeline {
         stage('Docker build') {
             steps {
                 script {
-                    dockerImage = docker.build('${dockerHub}/${dockerImage}:${dockerVersion}')
+                    dockerImage = docker.build('mydocker16121985/devops-capstone:4.0')
                     docker.withRegistry('', 'docker-hub-credentails') {
                         dockerImage.push()
                     }
@@ -25,8 +18,8 @@ pipeline {
         }
         stage('K8S Deploy')  {
             steps {
-                withAWS(credentials: 'aws-creds-eks', region: eksRegion) {
-                    sh 'aws eks --region=${eksRegion} update-kubeconfig --name ${eksClusterName}'
+                withAWS(credentials: 'aws-creds-eks', region: 'us-west-2') {
+                    sh 'aws eks --region us-west-2 update-kubeconfig --name EKSCluster'
                     sh 'kubectl apply -f capstone-deployment.yml'
                 }
             }
