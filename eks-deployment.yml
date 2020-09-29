@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: devops-capstone-pod
-        image: mydocker16121985/devops-capstone:4.0
+        image: mydocker16121985/devops-capstone:5.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80

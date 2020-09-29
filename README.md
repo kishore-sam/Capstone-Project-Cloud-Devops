@@ -16,7 +16,7 @@ Step 2: Set up pipeline
 1. Create an ec2 instance in AWS Console 
 2. Install and set up jenkins in the newly created ec2 instance along with necessary plugins - Blue Ocean, Pipeline-aws
 3. Install necessary packages in ec2 instance - tidy, docker, awscli, kubectl
-4. Update kubeconfig from ec2 instance
+4. Initialize kubernetes cluster from ec2 instance
         Run: aws eks --region us-west-2 update-kubeconfig --name EKSCluster
 
 Reference:

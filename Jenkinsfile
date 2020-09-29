@@ -9,7 +9,7 @@ pipeline {
         stage('Docker build') {
             steps {
                 script {
-                    dockerImage = docker.build('mydocker16121985/devops-capstone:4.0')
+                    dockerImage = docker.build('mydocker16121985/devops-capstone:5.0')
                     docker.withRegistry('', 'docker-hub-credentails') {
                         dockerImage.push()
                     }
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws-creds-eks', region: 'us-west-2') {
                     sh 'aws eks --region us-west-2 update-kubeconfig --name EKSCluster'
-                    sh 'kubectl apply -f capstone-deployment.yml'
+                    sh 'kubectl apply -f eks-deployment.yml'
                 }
             }
         }
