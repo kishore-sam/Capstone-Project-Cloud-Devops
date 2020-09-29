@@ -4,7 +4,7 @@ pipeline {
         eksRegion = 'us-west-2'
         dockerHub = 'mydocker16121985'
         dockerImage = 'devops-capstone'
-        dockerVersion = '0.1'
+        dockerVersion = '0.2'
     }
     agent any
     stages {
